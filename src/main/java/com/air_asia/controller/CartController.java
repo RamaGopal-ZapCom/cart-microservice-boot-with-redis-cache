@@ -28,7 +28,7 @@ public class CartController {
     @PostMapping("/{userId}/add")
     public Cart addItem(@PathVariable String userId,
                         @RequestBody Cart cart) {
-        return cartService.addOrUpdateCart(userId, cart);
+        return cartService.addCart(userId, cart);
     }
 
     @GetMapping("/{userId}")

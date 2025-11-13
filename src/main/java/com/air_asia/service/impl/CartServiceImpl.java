@@ -5,8 +5,6 @@ import com.air_asia.schema.Cart;
 import com.air_asia.service.CartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +18,9 @@ public class CartServiceImpl implements CartService {
     private  CartRepository cartRepository;
 
 
-
-
-    /**
-     * Add or update cart — stores in both Redis (manual) and MongoDB.
-     */
     @Override
-    @CachePut(value = "cartCache", key = "#userId")
-    public Cart addOrUpdateCart(String userId, Cart cart) {
+    //@CachePut(value = "cartCache", key = "#userId")
+    public Cart addCart(String userId, Cart cart) {
         if (userId == null || cart == null) {
             log.warn("UserId or Cart is null, cannot save to MongoDB");
             return null;
@@ -40,6 +33,7 @@ public class CartServiceImpl implements CartService {
     @Override
     @Cacheable(value = "cartCache", key = "#userId")
     public Cart getCart(String userId) {
+        log.info("====================================");
         if (userId == null) {
             log.warn("UserId is null — cannot fetch cart.");
             return null;
@@ -50,7 +44,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @CacheEvict(value = "cartCache", key = "#userId")
+    //@CacheEvict(value = "cartCache", key = "#userId")
     public void clearCart(String userId) {
         if (userId == null) {
             log.warn("UserId is null — cannot clear cart.");

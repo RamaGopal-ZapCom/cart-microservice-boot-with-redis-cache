@@ -10,7 +10,7 @@ import java.util.Optional;
  * Project Name - cart-microservice
  */
 public interface CartService {
-    Cart addOrUpdateCart(String userId, Cart cart);
+    Cart addCart(String userId, Cart cart);
     Cart getCart(String userId);
     void clearCart(String userId);
     List<Cart> getAllCarts();
