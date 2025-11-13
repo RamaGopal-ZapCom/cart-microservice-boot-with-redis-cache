@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: combined-cart-service
+  banner:
+    location: classpath:static/banner.txt
 
   data:
     mongodb:
