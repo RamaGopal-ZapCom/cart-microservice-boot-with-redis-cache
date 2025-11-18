@@ -757,3 +757,58 @@ C:\Users\RamaGopal>docker exec -it cart-microservice-boot-with-redis-cache-redis
 3) "cartCache::U10019"
 4) "cartCache::U10018"
 127.0.0.1:6379>
+=============================================================================================
+🔥 Key Differences
+
+| Feature        | `docker-compose` | `docker compose`             |
+| -------------- | ---------------- | ---------------------------- |
+| Hyphen         | Yes (`-`)        | No                           |
+| Version        | Compose v1       | Compose v2                   |
+| Technology     | Python binary    | Native Docker CLI subcommand |
+| Performance    | Slower           | Faster                       |
+| Development    | Deprecated       | Active & recommended         |
+| Installation   | Separate install | Comes with Docker Desktop    |
+| Future Support | Will be removed  | Long-term support            |
+
+===========================================================================================
+#################Containerization Process Using Docker Compose###########################
+===========================================================================================
+
+1. Bring Down All Containers (Clean Shutdown)
+
+            docker compose down
+
+2. Start Containers Fresh
+
+            docker compose up -d --build
+
+3. Check Running Containers
+
+            docker compose ps
+
+4. Check Spring Boot Logs
+
+            docker compose logs -f combined-cart-ms-service
+
+5. Connect to MongoDB (Inside Docker Network)
+
+            docker run -it --rm --network cart-microservice-boot-with-redis-cache_default mongo:7 mongosh mongodb://mongodb:27017/combined_cart_db
+
+
+            show collections
+
+
+            db.carts.find().pretty()
+
+
+6. Connect to Redis
+    Get CLI inside Redis container:
+
+            docker exec -it cart-microservice-boot-with-redis-cache-redis-1 redis-cli
+
+    Check all keys stored in Redis:
+
+        keys *
+
+
+
