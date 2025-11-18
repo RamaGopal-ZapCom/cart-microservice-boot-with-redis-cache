@@ -15,10 +15,18 @@
             docker compose ps
 
 4. Check Spring Boot Logs
+            Ex:
+                docker compose logs -f <service-name>
+
 
             docker compose logs -f combined-cart-ms-service
 
 5. Connect to MongoDB (Inside Docker Network)
+
+            EX:
+                docker run -it --rm --network <network-name> mongo:7 mongosh mongodb://<container-name>:27017/db-name
+
+
 
             docker run -it --rm --network cart-microservice-boot-with-redis-cache_default mongo:7 mongosh mongodb://mongodb:27017/combined_cart_db
 
@@ -31,6 +39,9 @@
 
 6. Connect to Redis
     Get CLI inside Redis container:
+
+            EX:
+                docker exec -it <container-name> redis-cli
 
             docker exec -it cart-microservice-boot-with-redis-cache-redis-1 redis-cli
 
